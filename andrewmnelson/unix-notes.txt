@@ -1,34 +1,38 @@
-Git is a version control system based on file identity.  In git, a file's identity is based on its contents, so it doesn't matter where two versions of a file come from; if they contain the same data, it's the same file.
+A unix filesystem is a hierarchy, or tree-structured construct, consisting of nodes which may refer to datafiles, devices, or directories which in turn may contain other nodes.
+Filesystem nodes have attributes such as ownership and read/write/execute permissions, which control what can be done with the data contained in the node, and who is allowed to do it.
+The path to a node consists of the full specification of the location of a node in the filesystem tree.
+The root node of the tree is named '/', and every fully-specified path begins with /.
+Unix maintains the idea of a 'working directory' which can be any directory node in the filesystem.
+A path which does not begin with / is evaluated relative to the current working directory.
+Special node names are defined which refer to the working directory:
+  . specifies the current directory
+  .. specifies the directory which contains the current directory (its "parent")
 
-Git works on file repositories, and is able to:
-- determine differences between repositories based on file identities
-- keep track of differences between repositories, keyed on who made the changes
-- move changes in and out of repositories
-- keep a log of what changes were made to a repository, and by whom
-- revert changes to a repository based on its logging
+A unix program is an executable file of binary data, which is loaded into memory and run as a process. Similar to filesystem nodes, processes also have ownership and permissions which control what the process is able to do.
+Every process has access to information about itself, the machine it's running on, the user running it, etc.  This information is called the process environment.
+The process environment includes the location of the current working directory.
+Processes also have access to standard input, output and error streams named stdin, stdout and stderr.
 
-Git commands include:
-init = create an empty Git repository, ready for changes
-clone = make a copy of an existing repository
-fetch = download all history from a remote repository
-branch = show all local branches in a repository
-branch <name> = create a new local branch called <name>
-branch -d <name> = delete local branch called <name>
-checkout <branch> = move from one local branch to another, modifying the current local directory
-add <file> = stage a local change for pushing to a remote repository
-status = show local changes to a repository - what's been staged, what hasn't
-diff = show differences between local files as they are vs. as they were staged
-reset <file> = unstage file, but don't change local contents
-merge <branch> = combine contents of specified <branch> with currently checkout'd branch
-commit -m <comment> = record permanent commented snapshot
-rm = delete a local file and stage the deletion
-rm --cached = stage deletion, but leave local file in place
-mv <oldname> <newname> = changes local filename and stages the rename
-stash = temporarily store all local changes and revert local files to last commit
-stash pop = unstash temporary storage, restoring local files to pre-stash state
-stash drop = delete temporary storage for most recent stash
-push = upload all local commits on current branch to remote repository
-pull = downloads history from remote repository and updates local files
+A unix shell is a program which listens for input from a keyboard or other input stream, interprets the input from that stream as system commands, and responds to those commands by a combination of changing its own configuration data, running other programs, and moving data to and from files, devices, and the inputs and outputs of programs.
+The shell is able to route program output data either to its own stdout for display on the command-line terminal, or to the stdin stream of another program, or to a file.  This is called redirection or "piping".
+The shell uses special names to control redirection:
+  > specifies that output data should be written to a file
+  >> specifies that output data should be appended to an existing file without overwriting
+  < specifies that input data should be read from a file
+  | specifies that output data from the program before the bar should be written to the input stream of the program after the bar
 
-Git can be configured to ignore local files which should not be versioned, such as intermediate binary products and user-specific configuration files.
-The .gitignore file contains specifications for files which should be ignored.
+Shell commands include:
+ls = list the contents of a directory
+mkdir = create a new directory
+rmdir = remove an existing directory
+cp = copy an existing node or tree of nodes to a new location
+mv = re-specify the location of a node or tree of nodes, effectively moving or renaming
+rm = remove an existing node, or tree of nodes if the -r flag is used
+cat = copy the contents of one or more nodes, in order, to stdout
+echo = copy command-line arguments to stdout
+more = copy stdin to stdout a page at a time, pausing between pages
+less = arguably a better more
+sort = read from stdin, arrange lines in sorted order, write sorted lines to stdout
+cut = read from stdin, output specified segments of lines to stdout as delimited lists
+paste = read from stdin, output delimited lists as concatenated lines
+grep = read from stdin, output only lines containing specified patterns
