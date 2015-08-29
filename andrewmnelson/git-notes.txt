@@ -1,0 +1,34 @@
+Git is a version control system based on file identity.  In git, a file's identity is based on its contents, so it doesn't matter where two versions of a file come from; if they contain the same data, it's the same file.
+
+Git works on file repositories, and is able to:
+- determine differences between repositories based on file identities
+- keep track of differences between repositories, keyed on who made the changes
+- move changes in and out of repositories
+- keep a log of what changes were made to a repository, and by whom
+- revert changes to a repository based on its logging
+
+Git commands include:
+init = create an empty Git repository, ready for changes
+clone = make a copy of an existing repository
+fetch = download all history from a remote repository
+branch = show all local branches in a repository
+branch <name> = create a new local branch called <name>
+branch -d <name> = delete local branch called <name>
+checkout <branch> = move from one local branch to another, modifying the current local directory
+add <file> = stage a local change for pushing to a remote repository
+status = show local changes to a repository - what's been staged, what hasn't
+diff = show differences between local files as they are vs. as they were staged
+reset <file> = unstage file, but don't change local contents
+merge <branch> = combine contents of specified <branch> with currently checkout'd branch
+commit -m <comment> = record permanent commented snapshot
+rm = delete a local file and stage the deletion
+rm --cached = stage deletion, but leave local file in place
+mv <oldname> <newname> = changes local filename and stages the rename
+stash = temporarily store all local changes and revert local files to last commit
+stash pop = unstash temporary storage, restoring local files to pre-stash state
+stash drop = delete temporary storage for most recent stash
+push = upload all local commits on current branch to remote repository
+pull = downloads history from remote repository and updates local files
+
+Git can be configured to ignore local files which should not be versioned, such as intermediate binary products and user-specific configuration files.
+The .gitignore file contains specifications for files which should be ignored.
